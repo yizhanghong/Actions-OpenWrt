@@ -8,6 +8,8 @@
 #
 # This is free software, licensed under the MIT License.
 # See /LICENSE for more information.
+#
+
 name: OpenWrt Builder
 
 on:
@@ -33,22 +35,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@main
-      
-      -name: Free up disk space
- uses: jlumbroso/free-disk-space@main
-  with:
-    # this might remove tools that are actually needed,
-    # if set to "true" but frees about 6 GB
-    tool-cache: true
-    # all of these default to true, but feel free to set to
-    # "false" if necessary for your workflow
-    android: true
-    dotnet: true
-    haskell: true
-    large-packages: true
-    swap-storage: true
-- name: Initialization environment
-  env:
+
+    - name: Initialization environment
+      env:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
@@ -132,7 +121,7 @@ jobs:
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
-      - with:
+      with:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
