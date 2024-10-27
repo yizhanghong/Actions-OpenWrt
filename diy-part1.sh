@@ -15,4 +15,4 @@
 
 # Add a feed source
 echo 'src-git smpall https://github.com/kenzok8/small' >>feeds.conf.default
-git clone https://github.com/Siriling/5G-Modem-Support package/luci-app-modem
+
