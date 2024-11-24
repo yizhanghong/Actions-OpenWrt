@@ -14,6 +14,7 @@
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 # Add a feed source
-echo 'src-git smpall https://github.com/kenzok8/small' >>feeds.conf.default
+ sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+ rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
 git clone https://github.com/Siriling/5G-Modem-Support package/luci-app-modem
 
